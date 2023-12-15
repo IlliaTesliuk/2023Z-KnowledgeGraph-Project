@@ -1,0 +1,10 @@
+@prefix spo: <https://mini.pw.edu.pl/kg/spo#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mo: <http://purl.org/ontology/mo/> .
+
+spo:danceability a rdf:Property ;
+    rdfs:label "has ABV"@en ;
+    rdfs:comment "Describes how suitable a track is for dancing. The value of this property should be an xsd:double. between 0.0 and 1.0"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .

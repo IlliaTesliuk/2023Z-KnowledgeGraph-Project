@@ -1,0 +1,46 @@
+prefixes:
+  mo: http://purl.org/ontology/mo/
+  plo: http://purl.org/net/po#
+  dbo: http://dbpedia.org/ontology/
+  foaf: http://xmlns.com/foaf/0.1/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  ex: http://www.example.com/
+  song: http://www.example.com/Song/
+  artist: http://www.example.com/Artist/
+  playlist: http://www.example.com/Playlist/
+  
+  #spo: F:\WUT\WUT\23Z\KnowledgeGraphs\project\spotify_songs\spo.ttl/
+  spo: F:/WUT/WUT/23Z/KnowledgeGraphs/project/spotify_songs/spo.ttl/
+
+mappings:
+  songs:
+    sources:
+      - ['spotify_songs.csv~csv'] 
+    s: song:$(track_id)
+    po:
+      - [a, mo:Track]
+      - [foaf:name, $(track_name)]
+      - p: mo:duration
+        o: 
+          value: $(duration_ms)
+          datatype: xsd:double
+      - p: spo:danceability
+        o:
+          value: $(danceability)
+          datatype: xsd:double
+  artists:
+    sources:
+      - ['artists.csv~csv']
+    s: artist:$(artist_id)
+    po:
+      - [a, mo:MusicArtist]
+      - [foaf:name, $(artist_name)]
+  playlists:
+    sources:
+      - ['playlists.csv~csv']
+    s: playlist:$(playlist_id)
+    po:
+      - [a, plo:Playlist]
+      - [foaf:name, $(playlist_name)]
+        
+ 
