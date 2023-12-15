@@ -1,4 +1,4 @@
 # 2023Z-KnowledgeGraph-Project
 
-Project 13A. Transform any static dataset to a knowledge graph with RML
-Author: Illia Tesliuk
+<p>Project 13A. Transform any static dataset to a knowledge graph with RML<br>
+Author: Illia Tesliuk</p>
