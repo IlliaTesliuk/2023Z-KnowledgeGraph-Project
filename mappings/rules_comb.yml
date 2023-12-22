@@ -8,26 +8,92 @@ prefixes:
   song: http://www.example.com/Song/
   artist: http://www.example.com/Artist/
   playlist: http://www.example.com/Playlist/
-  
-  #spo: F:\WUT\WUT\23Z\KnowledgeGraphs\project\spotify_songs\spo.ttl/
-  spo: F:/WUT/WUT/23Z/KnowledgeGraphs/project/spotify_songs/spo.ttl/
+  album: http://www.example.com/Album/
+
+  spo: https://mini.pw.edu.pl/kg/spo#
 
 mappings:
   songs:
     sources:
-      - ['spotify_songs.csv~csv'] 
+      - ['spotify_songs.csv~csv']
     s: song:$(track_id)
     po:
       - [a, mo:Track]
       - [foaf:name, $(track_name)]
       - p: mo:duration
-        o: 
+        o:
           value: $(duration_ms)
           datatype: xsd:double
       - p: spo:danceability
         o:
           value: $(danceability)
           datatype: xsd:double
+      - p: spo:energy
+        o:
+          value: $(energy)
+          datatype: xsd:double
+      - p: spo:key
+        o:
+          value: $(key)
+          datatype: xsd:integer
+      - p: spo:loudness
+        o:
+          value: $(loudness)
+          datatype: xsd:double
+      - p: spo:mode
+        o:
+          value: $(mode)
+          datatype: xsd:integer
+      - p: spo:speechiness
+        o:
+          value: $(speechiness)
+          datatype: xsd:double
+      - p: spo:acousticness
+        o:
+          value: $(acousticness)
+          datatype: xsd:double
+      - p: spo:instrumentalness
+        o:
+          value: $(instrumentalness)
+          datatype: xsd:double
+      - p: spo:liveness
+        o:
+          value: $(liveness)
+          datatype: xsd:double
+      - p: spo:valence
+        o:
+          value: $(valence)
+          datatype: xsd:double
+      - p: mo:bpm
+        o:
+          value: $(tempo)
+          datatype: xsd:double
+      - p: spo:artist
+        o:
+          mapping: artists
+          condition:
+            function: equal
+            parameters:
+              - [str1, $(track_artist), s]
+              - [str2, $(artist_name), o]
+      - p: spo:album
+        o:
+          mapping: albums
+          condition:
+            function: equal
+            parameters:
+              - [str1, $(track_album_id), s]
+              - [str2, $(album_id), o]
+      - p: spo:playlist
+        o:
+          mapping: playlists
+          condition:
+            function: equal
+            parameters:
+              - [str1, $(playlist_id), s]
+              - [str2, $(playlist_id), o]
+
+
   artists:
     sources:
       - ['artists.csv~csv']
@@ -35,6 +101,7 @@ mappings:
     po:
       - [a, mo:MusicArtist]
       - [foaf:name, $(artist_name)]
+
   playlists:
     sources:
       - ['playlists.csv~csv']
@@ -42,5 +109,17 @@ mappings:
     po:
       - [a, plo:Playlist]
       - [foaf:name, $(playlist_name)]
+
+  albums:
+    sources:
+      - ['albums.csv~csv']
+    s: album:$(album_id)
+    po:
+      - [a, mo:Record]
+      - [foaf:name, $(album_name)]
+      - p: spo:releaseDate
+        o:
+          value: $(album_release_date)
+          datatype: xsd:date
         
  
