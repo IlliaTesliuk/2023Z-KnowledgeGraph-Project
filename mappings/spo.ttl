@@ -2,9 +2,94 @@
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 @prefix mo: <http://purl.org/ontology/mo/> .
+@prefix plo: <http://purl.org/net/po#> .
+
+spo:artist a rdf:Property ;
+    rdfs:label "artist"@en ;
+    rdfs:comment "Track's artist" ;
+    rdfs:domain mo:Track ;
+    rdfs:range mo:MusicArtist .
+
+spo:album a rdf:Property ;
+    rdfs:label "album"@en ;
+    rdfs:comment "Track's album" ;
+    rdfs:domain mo:Track ;
+    rdfs:range mo:Record .
+
+spo:playlist a rdf:Property ;
+    rdfs:label "playlist"@en ;
+    rdfs:comment "Track's playlist" ;
+    rdfs:domain mo:Track ;
+    rdfs:range plo:Playlist .
 
 spo:danceability a rdf:Property ;
-    rdfs:label "has ABV"@en ;
-    rdfs:comment "Describes how suitable a track is for dancing. The value of this property should be an xsd:double. between 0.0 and 1.0"@en ;
+    rdfs:label "danceability"@en ;
+    rdfs:comment "Describes how suitable a track is for dancing. The value of this property should be an xsd:double. Takes value between 0.0 and 1.0"@en ;
     rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:energy a rdf:Property ;
+    rdfs:label "energy"@en ;
+    rdfs:comment "Represents a perceptual measure of intensity and activity. Takes value between 0.0 and 1.0"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:key a rdf:Property ;
+    rdfs:label "key"@en ;
+    rdfs:comment "Estimated overall key of the track using standard Pitch Class notation (0 = C, 1 = C♯/D♭, 2 = D, ...). If no key was detected, the value is -1"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:loudness a rdf:Property ;
+    rdfs:label "loudness"@en ;
+    rdfs:comment "The overall loudness of a track in decibels (dB). Values typical range between -60 and 0 db"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:mode a rdf:Property ;
+    rdfs:label "mode"@en ;
+    rdfs:comment "Indicates the modality (major or minor) of a track. Major=1, minor=0."@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:speechiness a rdf:Property ;
+    rdfs:label "speechiness"@en ;
+    rdfs:comment "Detects the presence of spoken words in a track. The more exclusively speech-like the recording, the closer to 1.0 the attribute value"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:acousticness a rdf:Property ;
+    rdfs:label "acousticness"@en ;
+    rdfs:comment "A confidence measure from 0.0 to 1.0 of whether the track is acoustic. Takes value between 0.0 and 1.0"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:instrumentalness a rdf:Property ;
+    rdfs:label "instrumentalness"@en ;
+    rdfs:comment "Predicts whether a track contains no vocals. Takes value between 0.0 and 1.0"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:liveness a rdf:Property ;
+    rdfs:label "liveness"@en ;
+    rdfs:comment "Detects the presence of an audience in the recording. Takes value between 0.0 and 1.0"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:valence a rdf:Property ;
+    rdfs:label "valence"@en ;
+    rdfs:comment "Describes the musical positiveness conveyed by a track. Takes value between 0.0 and 1.0"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:tempo a rdf:Property ;
+    rdfs:label "tempo"@en ;
+    rdfs:comment "The overall estimated tempo of a track in beats per minute (BPM)"@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
+spo:releaseDate a rdf:Property ;
+    rdfs:label "releaseData"@en ;
+    rdfs:commnt "Date of musical release. Is of type xsd:date (YYYY-MM-DD)" ;
+    rdfs:domain mo:Record ;
     rdfs:range rdfs:Literal .
