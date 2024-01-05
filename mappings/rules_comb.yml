@@ -4,11 +4,11 @@ prefixes:
   dbo: http://dbpedia.org/ontology/
   foaf: http://xmlns.com/foaf/0.1/
   xsd: http://www.w3.org/2001/XMLSchema#
-  ex: http://www.example.com/
-  song: http://www.example.com/Song/
-  artist: http://www.example.com/Artist/
-  playlist: http://www.example.com/Playlist/
-  album: http://www.example.com/Album/
+  song: https://mini.pw.edu.pl/kg/Song/
+  artist: https://mini.pw.edu.pl/kg/Artist/
+  playlist: https://mini.pw.edu.pl/kg/Playlist/
+  album: https://mini.pw.edu.pl/kg/Album/
+  genre: https://mini.pw.edu.pl/kg/Genre/
 
   spo: https://mini.pw.edu.pl/kg/spo#
 
@@ -24,6 +24,10 @@ mappings:
         o:
           value: $(duration_ms)
           datatype: xsd:double
+      - p: spo:popularity
+        o:
+          value: $(track_popularity)
+          datatype: xsd:integer
       - p: spo:danceability
         o:
           value: $(danceability)
@@ -109,6 +113,22 @@ mappings:
     po:
       - [a, plo:Playlist]
       - [foaf:name, $(playlist_name)]
+      - p: spo:genre
+        o:
+          mapping: genres
+          condition:
+            function: equal
+            parameters:
+              - [str1, $(playlist_genre), s]
+              - [str2, $(genre_name), o]
+      - p: spo:subgenre
+        o:
+          mapping: genres
+          condition:
+            function: equal
+            parameters:
+              - [str1, $(playlist_subgenre), s]
+              - [str2, $(genre_name), o]
 
   albums:
     sources:
@@ -121,5 +141,13 @@ mappings:
         o:
           value: $(album_release_date)
           datatype: xsd:date
-        
+  
+  genres:
+    sources:
+      - ['genres.csv~csv']
+    s: genre:$(genre_id)
+    po:
+      - [a, mo:Genre]
+      - [foaf:name, $(genre_name)]
+
  

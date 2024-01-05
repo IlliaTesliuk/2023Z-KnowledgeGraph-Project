@@ -22,6 +22,25 @@ spo:playlist a rdf:Property ;
     rdfs:domain mo:Track ;
     rdfs:range plo:Playlist .
 
+spo:genre a rdf:Property ;
+    rdfs:label "genre"@en ;
+    rdfs:comment "Playlist's genre" ;
+    rdfs:domain plo:Playlist ;
+    rdfs:range mo:Genre .
+
+spo:subgenre a rdf:Property ;
+    rdfs:label "subgenre"@en ;
+    rdfs:comment "Playlist's subgenre" ;
+    rdfs:domain plo:Playlist ;
+    rdfs:range mo:Genre .
+
+
+spo:popularity a rdf:Property ;
+    rdfs:label "popularity"@en ;
+    rdfs:comment "Song Popularity where higher is better. The value of this property should be an xsd:integer and takes range [0-100]."@en ;
+    rdfs:domain mo:Track ;
+    rdfs:range rdfs:Literal .
+
 spo:danceability a rdf:Property ;
     rdfs:label "danceability"@en ;
     rdfs:comment "Describes how suitable a track is for dancing. The value of this property should be an xsd:double. Takes value between 0.0 and 1.0"@en ;
