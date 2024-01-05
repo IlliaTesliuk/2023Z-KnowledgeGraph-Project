@@ -1,0 +1,24 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX plo: <http://purl.org/net/po#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX ex: <http://www.example.com/>
+PREFIX song: <http://www.example.com/Song/>
+PREFIX artist: <http://www.example.com/Artist/>
+PREFIX playlist: <http://www.example.com/Playlist/>
+PREFIX album: <http://www.example.com/Album/>
+PREFIX spo: <https://mini.pw.edu.pl/kg/spo#>
+
+SELECT ?song_id ?song_name ?artist_name ?album_name ?releaseDate WHERE {
+  ?song_id rdf:type mo:Track ;
+       foaf:name ?song_name ;
+       spo:album ?album_id ;
+       spo:artist ?artist_id .
+  ?artist_id foaf:name ?artist_name .
+  ?album_id foaf:name ?album_name ;
+            spo:releaseDate ?releaseDate .
+  FILTER(?releaseDate > "2015-01-01"^^xsd:date)
+} 
