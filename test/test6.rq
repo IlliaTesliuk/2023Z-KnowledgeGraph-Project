@@ -1,0 +1,19 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX plo: <http://purl.org/net/po#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX spo: <https://mini.pw.edu.pl/kg/spo#>
+
+SELECT ?song_id ?song_name ?artist_name ?album_name  ?popularity WHERE {
+  ?song_id rdf:type mo:Track ;
+       foaf:name ?song_name ;
+       spo:album ?album_id ;
+       spo:artist ?artist_id ;
+       spo:popularity ?popularity .
+  ?artist_id foaf:name ?artist_name .
+  ?album_id foaf:name ?album_name .
+} 
+ORDER BY DESC(?popularity)

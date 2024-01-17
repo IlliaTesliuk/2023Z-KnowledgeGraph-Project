@@ -1,0 +1,17 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX plo: <http://purl.org/net/po#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX spo: <https://mini.pw.edu.pl/kg/spo#>
+
+SELECT (SAMPLE(?genre_id) as ?genre_id1) (SAMPLE(?genre_name) as ?genre_name1) (COUNT(?playlist_id) as ?num_playlists) WHERE {
+	?genre_id rdf:type mo:Genre ;
+           foaf:name ?genre_name .
+  
+  	?playlist_id spo:genre ?genre_id ;
+                foaf:name ?playlist_name .
+}
+GROUP BY (?genre_id)

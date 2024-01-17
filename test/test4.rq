@@ -1,0 +1,16 @@
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
+PREFIX mo: <http://purl.org/ontology/mo/>
+PREFIX plo: <http://purl.org/net/po#>
+PREFIX dbo: <http://dbpedia.org/ontology/>
+PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+PREFIX spo: <https://mini.pw.edu.pl/kg/spo#>
+
+SELECT DISTINCT (SAMPLE(?artist_id) as ?artist_id1) (SAMPLE(?artist_name) as ?artist_name1) (COUNT(?song_id) as ?songs_number) WHERE {
+  ?artist_id rdf:type mo:MusicArtist ;
+       foaf:name ?artist_name .
+  ?song_id spo:artist ?artist_id.
+} 
+GROUP BY ?artist_id
+ORDER BY DESC(?songs_number)
